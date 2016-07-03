@@ -2,7 +2,7 @@ organization in ThisBuild := "sample.helloworld"
 
 // the Scala version that will be used for cross-compiled libraries
 scalaVersion in ThisBuild := "2.11.7"
-
+/*
 lazy val helloworldApi = project("helloworld-api")
   .settings(
     version := "1.0-SNAPSHOT",
@@ -34,6 +34,21 @@ lazy val hellostreamImpl = project("hellostream-impl")
   .settings(
     libraryDependencies += lagomJavadslTestKit
   )
+*/
+
+lazy val listingsApi = project("listings-api")
+    .settings(
+      version := "0.0",
+      libraryDependencies += lagomJavadslApi
+    )
+
+lazy val listingsImpl = project("listings-impl")
+  .settings(
+    version := "0.0",
+    libraryDependencies += lagomJavadslApi
+  )
+  .dependsOn(listingsApi)
+
 
 def project(id: String) = Project(id, base = file(id))
   .settings(eclipseSettings: _*)
