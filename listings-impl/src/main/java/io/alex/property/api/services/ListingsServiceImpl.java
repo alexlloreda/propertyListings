@@ -1,7 +1,9 @@
 package io.alex.property.api.services;
 
+import akka.Done;
 import akka.NotUsed;
 import com.lightbend.lagom.javadsl.api.ServiceCall;
+import io.alex.property.api.entities.Listing;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -12,5 +14,10 @@ public class ListingsServiceImpl implements ListingsService {
     @Override
     public ServiceCall<NotUsed, String> hello(String id) {
         return request -> CompletableFuture.completedFuture("Hello" + id);
+    }
+
+    @Override
+    public ServiceCall<Listing, Done> createListing() {
+        return request -> CompletableFuture.completedFuture(Done.getInstance());
     }
 }

@@ -43,9 +43,13 @@ lazy val listingsApi = project("listings-api")
     )
 
 lazy val listingsImpl = project("listings-impl")
+  .enablePlugins(LagomJava)
   .settings(
     version := "0.0",
-    libraryDependencies += lagomJavadslApi
+    libraryDependencies ++= Seq(
+      lagomJavadslPersistence,
+      lagomJavadslTestKit
+    )
   )
   .dependsOn(listingsApi)
 
